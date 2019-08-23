@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.kgc.tangcco.tcst002.dao.customer.CustomerMapper">
+	<insert id="inserInfo" parameterType="Customer">
+		INSERT INTO customerinfo
+		(customerName,customerPhone,customerGender,customerAge,customerAddress,integral,customerMember,balance)
+		VALUES(#{customerName},#{customerPhone},#{customerGender},#{customerAge},#{customerAddress},#{integral},#{customerMember},#{balance})
+	</insert>
+	<select id="queryAllInfo" resultType="Customer">
+		SELECT * FROM customerinfo
+		<where>
+			<if test="customerName!=null and customerName!=''">
+				and customerName LIKE CONCAT('%',#{customerName},'%')
+			</if>
+		</where>
+	</select>
+	<select id="queryEntityInfo" resultType="Customer">
+		SELECT * FROM
+		customerinfo where id=#{id}
+	</select>
+	<update id="updateInfo">
+		update customerinfo set
+		customerName=#{customerName},customerPhone=#{customerPhone},customerGender=#{customerGender},customerAge=#{customerAge},customerAddress=#{customerAddress},integral=#{integral},customerMember=#{customerMember},balance=#{balance}
+		where id=#{id};
+	</update>
+	<delete id="removeInfo">
+		delete from customerinfo where id=#{id};
+	</delete>
+	<delete id="removeInfoByIds" parameterType="Integer">
+		delete from customerinfo where id in
+		<foreach collection="array" item="id" open="(" separator=","
+			close=")">
+			#{id}
+		</foreach>
+	</delete>
+	<select id="queryBalance" resultType="Double">
+		SELECT balance FROM
+		customerinfo WHERE id=#{id}
+	</select>
+	<select id="queryInfo" resultType="Customer">
+		SELECT id,customerName FROM
+		customerinfo
+	</select>
+
+	<select id="queryCustomerMember" resultType="int">
+		SELECT customerMember FROM customerinfo WHERE id=#{id}
+	</select>
+	<update id="updateJiFen">
+		UPDATE customerinfo SET integral=integral+#{integral} where id=#{id}
+	</update>
+</mapper>

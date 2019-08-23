@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.kgc.tangcco.tcst002.dao.petservice.PetServiceInfoMapper">
+	<insert id="insertInfo" parameterType="PetServiceInfo">
+		INSERT INTO
+		serviceinfo(serviceName,smallShortPrice,smallLongPrice,mediumShortPrice,mediumLongPrice,bigShortPrice,bigLongShortPrice)
+		VALUES(#{serviceName},#{smallShortPrice},#{smallLongPrice},#{mediumShortPrice},#{mediumLongPrice},#{bigShortPrice},#{bigLongShortPrice})
+	</insert>
+	<select id="queryAllInfo" resultType="PetServiceInfo">
+		SELECT * FROM serviceinfo
+	</select>
+	<delete id="removeInfo">
+	delete from serviceinfo where id=#{id}
+	</delete>
+</mapper>

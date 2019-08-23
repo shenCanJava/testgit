@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.kgc.tangcco.tcst002.dao.product.ProductMapper">
+	<select id="queryAllInfo" resultType="Product">
+		SELECT * FROM productinfo
+		<where>
+			<if test="productName!=null and productName!=''">
+				and productName LIKE
+				CONCAT('%',#{productName},'%')
+			</if>
+		</where>
+
+	</select>
+	<update id="updateInfoShang">
+		update productinfo set status=0 where id=#{id}
+	</update>
+	<update id="updateInfoXia">
+		update productinfo set status=1 where id=#{id}
+	</update>
+	<insert id="insertInfo" parameterType="Product">
+		INSERT INTO
+		productinfo(productName,purchasePrice,price,specifications,`type`,stock)
+		VALUES(#{productName},#{purchasePrice},#{price},#{specifications},#{type},#{stock})
+	</insert>
+	<delete id="removeInfo">
+	delete from productinfo where id=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.kgc.tangcco.tcst002.dao.employee.EmployeeMapper">
+	<insert id="insertInfo" parameterType="Employee">
+		INSERT INTO
+		employeeinfo(employee_Name,employee_Age,employee_Native_Place,employee_Id_Number,employee_EmailAddress,employee_Phone,employee_Address,employee_BornDate,employee_Entry_Time,employee_Wages,remark)
+		VALUES(#{employee_Name},#{employee_Age},#{employee_Native_Place},#{employee_Id_Number},#{employee_EmailAddress},#{employee_Phone},#{employee_Address},#{employee_BornDate},#{employee_Entry_Time},#{employee_Wages},#{remark})
+	</insert>
+	<select id="queryAllInfo" resultType="Employee">
+		SELECT * FROM employeeinfo WHERE 1=1
+		<if test="employee_Name!=null and employee_Name!=''">
+			and employee_Name LIKE
+			CONCAT('%',#{employee_Name},'%')
+		</if>
+		<if test="employee_Id_Number!=null and employee_Id_Number!=''">
+			and employee_Id_Number like
+			concat('%',#{employee_Id_Number},'%')
+		</if>
+	</select>
+
+	<select id="queryInfoById" resultType="Employee">
+		select * from employeeinfo
+		where employee_Number=#{id}
+	</select>
+	<update id="updateInfo" parameterType="Employee">
+		UPDATE employeeinfo SET
+		employee_Name=#{employee_Name},employee_Sex=#{employee_Sex},employee_Age=#{employee_Age},
+		employee_BornDate=#{employee_BornDate},employee_Id_Number=#{employee_Id_Number},employee_EmailAddress=#{employee_EmailAddress},
+		employee_Phone=#{employee_Phone},employee_Address=#{employee_Address},employee_Native_Place=#{employee_Native_Place},
+		employee_Entry_Time=#{employee_Entry_Time},employee_Wages=#{employee_Wages},employee_Status=#{employee_Status}
+		where employee_Number=#{employee_Number}
+	</update>
+	<delete id="removeInfo">
+	delete from employeeinfo where employee_Number=#{id}
+	</delete>
+</mapper>

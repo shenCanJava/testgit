@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.tangcco.tcst002.dao.pet.PetMapper">
+	<insert id="insertInfo" parameterType="Pet">
+		INSERT INTO
+		petinfo(petName,petAge,petGender,customerId,petShape,petVarieties,petWeight)
+		VALUES(#{petName},#{petAge},#{petGender},#{customerId},#{petShape},#{petVarieties},#{petWeight})
+	</insert>
+	<resultMap type="Pet" id="petInfoResultMap">
+		<id property="id" column="id" />
+		<result property="customerName" column="customerName" />
+		<result property="petType" column="petType" />
+		<result property="statusName" column="statusName" />
+	</resultMap>
+
+	<select id="queryAllInfo" resultMap="petInfoResultMap">
+		SELECT p.*,c.customerName,t.petType,s.statusName FROM petinfo
+		p,customerinfo
+		c,pettypeinfo t,statusinfo s
+		WHERE p.customerId=c.id AND
+		p.petShape=t.id AND p.serviceStatus=s.id
+		<if test="petName!=null and petName!=''">
+			AND
+			p.petName LIKE CONCAT('%',#{petName},'%')
+		</if>
+		<if test="customerName!=null and customerName!=''">
+			and c.customerName like
+			concat('%',#{customerName},'%')
+		</if>
+	</select>
+	<delete id="removeInfo">
+	delete from petinfo where id=#{id}
+	</delete>
+</mapper>

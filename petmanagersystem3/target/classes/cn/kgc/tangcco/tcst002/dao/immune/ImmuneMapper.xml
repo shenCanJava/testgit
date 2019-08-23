@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="cn.kgc.tangcco.tcst002.dao.immune.ImmuneMapper">
+	<resultMap type="Immune" id="immuneResultMap">
+		<id property="id" column="id" />
+		<result property="petName" column="petName" />
+		<result property="customerName" column="customerName" />
+		<result property="inputDate" column="inputDate" />
+		<result property="employee_Name" column="employee_Name" />
+	</resultMap>
+	<select id="queryAllInfo" resultMap="immuneResultMap">
+		SELECT
+		m.id,petName,customerName,inputDate,employee_Name
+		FROM immuneinfo
+		m,petinfo p,customerinfo c,employeeinfo e
+		WHERE m.petId=p.id AND
+		m.staffId=e.employee_Number AND m.customerId=c.id
+		<if test="customerName!=null and customerName!=''">
+			AND customerName LIKE
+			CONCAT('%',#{customerName},'%')
+		</if>
+		<if test="petName!=null and petName!=''">
+			and petName like
+			concat('%',#{petName},'%')
+		</if>
+	</select>
+	<delete id="removeInfo">
+		DELETE FROM immuneinfo WHERE id=#{id}
+	</delete>
+
+</mapper>

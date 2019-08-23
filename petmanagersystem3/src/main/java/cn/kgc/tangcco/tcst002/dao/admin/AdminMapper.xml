@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.tangcco.tcst002.dao.admin.AdminMapper">
+	<insert id="insertInfo" parameterType="Admin">
+		insert into
+		managerinfo(administrators_Num,administrators_Name,administrators_Password)
+		values(#{administrators_Num},#{administrators_Name},#{administrators_Password})
+	</insert>
+	<select id="queryAllInfo" resultType="Admin">
+		select * from managerinfo where 1=1
+		<if test="name !=null and name !=''">
+			and administrators_Name like concat('%',#{name},'%')
+		</if>
+		<if test="password !=null and password !=''">
+			and
+			administrators_Password like
+			concat('%',#{password},'%')
+		</if>
+	</select>
+	<select id="queryInfoById" resultType="Admin">
+		select * from managerinfo
+		where administrators_Num=#{id}
+	</select>
+	<update id="updateInfo">
+		update managerinfo set
+		administrators_Name=#{administrators_Name},administrators_Password=#{administrators_Password}
+		where administrators_Num=#{administrators_Num}
+	</update>
+	<delete id="removeInfo">
+		delete from managerinfo where
+		administrators_Num=#{id}
+	</delete>
+	<select id="isLogin" resultType="String">
+		SELECT administrators_Name FROM managerinfo WHERE
+		administrators_Name=#{administrators_Name} and
+		administrators_Password=#{administrators_Password}
+	</select>
+</mapper>

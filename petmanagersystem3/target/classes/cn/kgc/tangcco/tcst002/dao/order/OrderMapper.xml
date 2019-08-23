@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kgc.tangcco.tcst002.dao.order.OrderMapper">
+	<resultMap type="Order" id="queryResultMap">
+		<id property="id" column="id" />
+		<result property="petName" column="petName" />
+		<result property="employee_Name" column="employee_Name" />
+		<result property="money" column="money" />
+		<result property="status" column="status" />
+		<result property="time" column="time" />
+		<association property="customer" javaType="Customer">
+			<id property="id" column="c_id" />
+			<result property="customerPhone" column="customerPhone" />
+		</association>
+	</resultMap>
+	<select id="queryAllInfo" resultMap="queryResultMap">
+		SELECT o.id,c.id
+		c_id,petName,employee_Name,customerPhone,money,`status`,`time`
+		FROM
+		orderinfo
+		o,petinfo p,employeeinfo e,customerinfo c
+		WHERE
+		p.id=o.petId
+		AND
+		o.staffId=e.employee_Number AND c.id=o.customerId
+		<if test="petName!=null and petName!=''">
+			AND petName LIKE
+			CONCAT('%',#{petName},'%')
+		</if>
+		<if test="employee_Name!=null and employee_Name!=''">
+			and employee_Name like
+			CONCAT('%',#{employee_Name},'%')
+		</if>
+	</select>
+	<update id="jieSuanStatus">
+		update orderinfo set status=0 where id=#{id}
+	</update>
+	
+		<update id="updateBalance">
+			update customerinfo set balance=balance-#{money} where id=#{id}
+	</update>
+
+</mapper>

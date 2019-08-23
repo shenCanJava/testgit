@@ -1,0 +1,133 @@
+.administratorsTop {
+	width: 1267px;
+	height: 50px;
+	background-color: #EEEEEE;
+}
+
+.updateTop {
+	width: 1267px;
+	height: 50px;
+	background-color: #EEEEEE;
+}
+
+.addAdministrators {
+	border: 1.5px solid #EEEEEE;
+	width: 1270px;
+	height: 172px;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.selectTop {
+	width: 1267px;
+	height: 50px;
+	background-color: #EEEEEE;
+}
+.addAdministratorsInfo {
+	margin-left: 10px;
+	margin-top: 7px;
+}
+
+.addTable {
+	margin: 12px;
+	width: 1245px;
+	padding-left: 2px;
+}
+
+.form-control {
+	width: 230px;
+}
+
+.save,
+.rest {
+	margin-left: 520px;
+}
+
+.selectAdministrators {
+	position: relative;
+	top: 50px;
+	border: 1.5px solid #EEEEEE;
+	width: 1270px;
+	border-radius: 5px;
+	margin-left: 10px;
+	margin-top: -25px;
+}
+
+.administratorsInfo {
+	margin-left: 10px;
+	margin-top: 7px;
+}
+
+.selectTable {
+	margin: 12px;
+	width: 1245px;
+}
+
+.selectTable2 {
+	margin: 12px;
+	width: 1245px;
+}
+
+.selectTable2 tr:nth-of-type(1) {
+	font-weight: bold;
+}
+
+.selectTr {
+	width: 600px;
+	margin-left: 330px;
+}
+
+.go {
+	width: 80px;
+	text-align: center;
+	height: 25px;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.tiao:hover {
+	text-decoration: none;
+}
+
+.Employee {
+	border: 1.5px solid #EEEEEE;
+	width: 1270px;
+	height: 440px;
+	border-radius: 5px;
+	margin-left: 10px;
+}
+
+.updateAdministrators {
+	width: 1270px;
+	height: 185px;
+	border: 1px solid #EEEEEE;
+	margin-top: 80px;
+	margin-left: 10px;
+	border-radius: 5px;
+}
+
+.updateEmployeeTop {
+	width: 1268px;
+	height: 50px;
+	background-color: #EEEEEE;
+}
+
+.updateAdministratorsInfo {
+	margin-left: 10px;
+	margin-top: 7px;
+}
+
+.updateAdministrators input {
+	width: 200px;
+}
+
+.updateAdministrators select {
+	width: 200px;
+}
+
+.updateTr {
+	margin: 10px;
+	width: 1245px;
+}
